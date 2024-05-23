@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Campaign Form</title>
+</head>
+<body>
+    <h2>Marketing Campaign Form</h2>
+    <form action="https://script.google.com/macros/s/AKfycbzcpq4dXd7vDPo1bpITrLDBXqYrZ1PSABgEgkShsGITiJ6nuQ2zKN2WPyefiGU7OJxg/exec" method="post">
+        <!-- Email -->
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <!-- First Name -->
+        <label for="first_name">First Name:</label><br>
+        <input type="text" id="first_name" name="first_name" required><br><br>
+
+        <!-- Last Name -->
+        <label for="last_name">Last Name:</label><br>
+        <input type="text" id="last_name" name="last_name" required><br><br>
+
+        <!-- Date of Order -->
+        <label for="date_of_order">Date of Order:</label><br>
+        <input type="date" id="date_of_order" name="date_of_order" required><br><br>
+
+        <!-- Order Number -->
+        <label for="order_number">Order Number:</label><br>
+        <input type="text" id="order_number" name="order_number" required><br><br>
+
+        <!-- Order Place -->
+        <label for="order_place">Order Place:</label><br>
+        <select id="order_place" name="order_place" required>
+            <option value="">Select</option>
+            <option value="SHABU To Go Alkmaar">SHABU To Go Alkmaar</option>
+            <option value="SHABU To Go Almere">SHABU To Go Almere</option>
+            <option value="SHABU To Go Alphen">SHABU To Go Alphen</option>
+            <option value="SHABU To Go Amersfoort">SHABU To Go Amersfoort</option>
+            <option value="SHABU To Go Amsterdam Noord">SHABU To Go Amsterdam Noord</option>
+            <option value="SHABU To Go Apeldoorn">SHABU To Go Apeldoorn</option>
+            <option value="SHABU To Go Breda">SHABU To Go Breda</option>
+            <option value="SHABU To Go Delft">SHABU To Go Delft</option>
+            <option value="SHABU To Go Den Haag Fahrenheitstraat">SHABU To Go Den Haag Fahrenheitstraat</option>
+            <option value="SHABU To Go Den Haag Ypenburg">SHABU To Go Den Haag Ypenburg</option>
+            <option value="SHABU To Go Deventer">SHABU To Go Deventer</option>
+            <option value="SHABU To Go Ede">SHABU To Go Ede</option>
+            <option value="SHABU To Go Eindhoven Zuid">SHABU To Go Eindhoven Zuid</option>
+            <option value="SHABU To Go Gouda">SHABU To Go Gouda</option>
+            <option value="SHABU To Go Haarlem">SHABU To Go Haarlem</option>
+            <option value="SHABU To Go Leiden">SHABU To Go Leiden</option>
+            <option value="SHABU To Go Nieuwegein">SHABU To Go Nieuwegein</option>
+            <option value="SHABU To Go Nijmegen">SHABU To Go Nijmegen</option>
+            <option value="SHABU To Go Rijswijk">SHABU To Go Rijswijk</option>
+            <option value="SHABU To Go Rotterdam Alexandrium">SHABU To Go Rotterdam Alexandrium</option>
+            <option value="SHABU To Go Rotterdam Coolsingel">SHABU To Go Rotterdam Coolsingel</option>
+            <option value="SHABU To Go Rotterdam Zuid">SHABU To Go Rotterdam Zuid</option>
+            <option value="SHABU To Go Spijkenisse">SHABU To Go Spijkenisse</option>
+            <option value="SHABU To Go Utrecht">SHABU To Go Utrecht</option>
+            <option value="SHABU To Go Utrecht Leidsche Rijn">SHABU To Go Utrecht Leidsche Rijn</option>
+            <option value="SHABU To Go Vlaardingen">SHABU To Go Vlaardingen</option>
+            <option value="SHABU To Go Zeist">SHABU To Go Zeist</option>
+            <option value="SHABU To Go Zoetermeer">SHABU To Go Zoetermeer</option>
+            <option value="SHABU To Go Zwijndrecht">SHABU To Go Zwijndrecht</option>
+        </select><br><br>
+
+        <!-- Phone Number -->
+        <label for="phone_number">Phone Number: (optional)</label><br>
+        <input type="tel" id="phone_number" name="phone_number" pattern="^\+?[0-9]*$" title="Please enter a valid phone number. Only numbers and symbols are allowed."><br><br>
+
+        <!-- Instagram Profile -->
+        <label for="instagram_profile">Instagram Profile: (optional)</label><br>
+        <input type="text" id="instagram_profile" name="instagram_profile"><br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+    </form>
+
+ <!-- Success Popup -->
+ <div id="success_popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 2px solid black;">
+    <h3>Form Submitted Successfully! TestMessagePart1</h3>
+    <p>Thank you for your submission. TestMessagePart2</p>
+</div>
+
+<script>
+    // Function to show the success popup
+    function showSuccessPopup() {
+        document.getElementById("success_popup").style.display = "block";
+        // Redirect to homepage after 3 seconds
+        setTimeout(function() {
+            window.location.href = "https://www.shabutogo.nl/";
+        }, 3000);
+    }
+
+    // Attach a listener to the form submit event
+    document.getElementById("marketing_form").addEventListener("submit", function(event) {
+        // Show success popup
+        showSuccessPopup();
+        // Prevent the default form submission
+        event.preventDefault();
+    });
+</script>
+</body>
+</html>
