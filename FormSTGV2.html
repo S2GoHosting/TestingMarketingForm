@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Marketing Campaign Form</h2>
-    <form action="https://script.google.com/macros/s/AKfycbzcpq4dXd7vDPo1bpITrLDBXqYrZ1PSABgEgkShsGITiJ6nuQ2zKN2WPyefiGU7OJxg/exec" method="post">
+    <form id="marketing_form" action="https://script.google.com/macros/s/AKfycbzcpq4dXd7vDPo1bpITrLDBXqYrZ1PSABgEgkShsGITiJ6nuQ2zKN2WPyefiGU7OJxg/exec" method="post">
         <!-- Email -->
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br><br>
@@ -75,28 +75,30 @@
         <button type="submit">Submit</button>
     </form>
 
- <!-- Success Popup -->
- <div id="success_popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 2px solid black;">
-    <h3>Form Submitted Successfully! TestMessagePart1</h3>
-    <p>Thank you for your submission. TestMessagePart2</p>
-</div>
-
 <script>
-    // Function to show the success popup
-    function showSuccessPopup() {
-        document.getElementById("success_popup").style.display = "block";
-        // Redirect to homepage after 3 seconds
-        setTimeout(function() {
-            window.location.href = "https://www.shabutogo.nl/";
-        }, 3000);
-    }
-
     // Attach a listener to the form submit event
     document.getElementById("marketing_form").addEventListener("submit", function(event) {
-        // Show success popup
-        showSuccessPopup();
         // Prevent the default form submission
         event.preventDefault();
+        
+        // Submit the form via AJAX
+        var form = event.target;
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                // Redirect to homepage after successful submission
+                window.location.href = "https://www.shabutogo.nl/";
+            } else {
+                alert('Form submission failed. Please try again.');
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+            alert('Form submission failed. Please try again.');
+        });
     });
 </script>
 </body>
