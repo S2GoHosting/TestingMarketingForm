@@ -4,102 +4,280 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketing Campaign Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items at the start */
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px; /* Increase the width to accommodate side-by-side layout */
+            text-align: left;
+            margin-top: 20px; /* Add some margin to the top */
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            flex: 1; /* Allow label to take available space */
+            margin-right: 10px;
+        }
+        .form-group input,
+        .form-group select {
+            flex: 2; /* Allow input/select to take available space */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-container form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ccc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: not-allowed;
+        }
+        .form-container form button.enabled {
+            background-color: #4CAF50;
+            cursor: pointer;
+        }
+        .form-container form button.enabled:hover {
+            background-color: #45a049;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit; /* Inherit font from parent */
+        }
+
+        /* Custom CSS for the first fieldset */
+        #personal_info_fieldset {
+            border: none; /* Remove the border */
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        /* Custom CSS for the second fieldset */
+        #order_info_fieldset {
+            border: none; /* Remove the border */
+            padding: 10px;
+            border-radius: 8px;
+        }
+        /* Align the legend text to the left */
+        legend {
+            text-align: center;
+            font-weight: bold; /* Optional: You can adjust the font weight as needed */
+        }
+        /* Lighter border for normal state */
+        input, select {
+            border: 1px solid #ff0000; /* Lighter color */
+            transition: border-color 0.3s; /* Smooth transition */
+        }
+        /* Darker border for hover state */
+        input:hover, select:hover {
+            box-shadow: 0 0 3px rgba(65, 62, 255, 0.5); /* Blue glow effect */
+        }
+        /* Glow effect for focus state */
+        input:focus, select:focus {
+            box-shadow: 0 0 10px rgba(20, 23, 243, 0.5); /* Blue glow effect */
+        }
+        /* Position the checkbox and text */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 16px;
+        }
+        .checkbox-container label {
+            margin-left: 8px; /* Adjust spacing between checkbox and text */
+        }
+        /* Divider between fieldsets */
+        .fieldset-divider {
+            border-top: 1px solid #ccc;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Marketing Campaign Form</h2>
-    <form id="marketing_form" action="https://script.google.com/macros/s/AKfycbzcpq4dXd7vDPo1bpITrLDBXqYrZ1PSABgEgkShsGITiJ6nuQ2zKN2WPyefiGU7OJxg/exec" method="post">
-        <!-- Email -->
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+    <div class="form-container">
+        <h2>SHABU To Go 10 jaar Winactie</h2>
+        <div class="fieldset-divider"></div>
+        <form id="marketing_form" action="https://script.google.com/macros/s/AKfycbzcpq4dXd7vDPo1bpITrLDBXqYrZ1PSABgEgkShsGITiJ6nuQ2zKN2WPyefiGU7OJxg/exec" method="post">
+            <fieldset id="order_info_fieldset">
+                <legend id="order_info_fieldset_legend">Bestelling gegevens</legend>
+                <br>
+                <div class="form-group">
+                    <label for="date_of_order"><b>Dag van bestelling:</b></label>
+                    <input type="date" id="date_of_order" name="date_of_order" required>
+                </div>
+                <div class="form-group">
+                    <label for="order_number"><b>Order/Bon nummer: </b></label>
+                    <input type="text" id="order_number" name="order_number" required pattern="\d+" title="Please enter a valid order number. Only numbers are allowed.">
+                </div>
+                <div class="form-group">
+                    <label for="order_place"><b>Vestiging van bestelling:</b></label>
+                    <select id="order_place" name="order_place" required>
+                        <option value="">--Selecteer de vestiging--</option>
+                        <option value="SHABU To Go Alkmaar">SHABU To Go Alkmaar</option>
+                        <option value="SHABU To Go Almere">SHABU To Go Almere</option>
+                        <option value="SHABU To Go Alphen">SHABU To Go Alphen</option>
+                        <option value="SHABU To Go Amersfoort">SHABU To Go Amersfoort</option>
+                        <option value="SHABU To Go Amsterdam Noord">SHABU To Go Amsterdam Noord</option>
+                        <option value="SHABU To Go Apeldoorn">SHABU To Go Apeldoorn</option>
+                        <option value="SHABU To Go Breda">SHABU To Go Breda</option>
+                        <option value="SHABU To Go Delft">SHABU To Go Delft</option>
+                        <option value="SHABU To Go Den Haag Fahrenheitstraat">SHABU To Go Den Haag Fahrenheitstraat</option>
+                        <option value="SHABU To Go Den Haag Ypenburg">SHABU To Go Den Haag Ypenburg</option>
+                        <option value="SHABU To Go Deventer">SHABU To Go Deventer</option>
+                        <option value="SHABU To Go Ede">SHABU To Go Ede</option>
+                        <option value="SHABU To Go Eindhoven Zuid">SHABU To Go Eindhoven Zuid</option>
+                        <option value="SHABU To Go Gouda">SHABU To Go Gouda</option>
+                        <option value="SHABU To Go Haarlem">SHABU To Go Haarlem</option>
+                        <option value="SHABU To Go Leiden">SHABU To Go Leiden</option>
+                        <option value="SHABU To Go Nieuwegein">SHABU To Go Nieuwegein</option>
+                        <option value="SHABU To Go Nijmegen">SHABU To Go Nijmegen</option>
+                        <option value="SHABU To Go Rijswijk">SHABU To Go Rijswijk</option>
+                        <option value="SHABU To Go Rotterdam Alexandrium">SHABU To Go Rotterdam Alexandrium</option>
+                        <option value="SHABU To Go Rotterdam Coolsingel">SHABU To Go Rotterdam Coolsingel</option>
+                        <option value="SHABU To Go Rotterdam Zuid">SHABU To Go Rotterdam Zuid</option>
+                        <option value="SHABU To Go Spijkenisse">SHABU To Go Spijkenisse</option>
+                        <option value="SHABU To Go Utrecht">SHABU To Go Utrecht</option>
+                        <option value="SHABU To Go Utrecht Leidsche Rijn">SHABU To Go Utrecht Leidsche Rijn</option>
+                        <option value="SHABU To Go Vlaardingen">SHABU To Go Vlaardingen</option>
+                        <option value="SHABU To Go Zeist">SHABU To Go Zeist</option>
+                        <option value="SHABU To Go Zoetermeer">SHABU To Go Zoetermeer</option>
+                        <option value="SHABU To Go Zwijndrecht">SHABU To Go Zwijndrecht</option>
+                    </select>
+                </div>
+            </fieldset>
 
-        <!-- First Name -->
-        <label for="first_name">First Name:</label><br>
-        <input type="text" id="first_name" name="first_name" required><br><br>
+            <div class="fieldset-divider"></div>
 
-        <!-- Last Name -->
-        <label for="last_name">Last Name:</label><br>
-        <input type="text" id="last_name" name="last_name" required><br><br>
+            <fieldset id="personal_info_fieldset">
+                <legend id="personal_info_fieldset_legend">Persoonsgegevens</legend>
+                <br>
+                <div class="form-group">
+                    <label for="email"><b>Email:</b></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="first_name"><b>Voornaam:</b></label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name"><b>Achternaam:</b></label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number"><b>Telefoonnummer: </b>(Optioneel)</label>
+                    <input type="tel" id="phone_number" name="phone_number" pattern="^\+?[0-9]*$" title="Please enter a valid phone number. Only numbers and symbols are allowed.">
+                </div>
+                <div class="form-group">
+                    <label for="instagram_profile"><b>Instagram Profile: </b>(Optioneel)</label>
+                    <input type="text" id="instagram_profile" name="instagram_profile">
+                </div>
+            </fieldset>
 
-        <!-- Date of Order -->
-        <label for="date_of_order">Date of Order:</label><br>
-        <input type="date" id="date_of_order" name="date_of_order" required><br><br>
+            <div class="fieldset-divider"></div>
 
-        <!-- Order Number -->
-        <label for="order_number">Order Number:</label><br>
-        <input type="text" id="order_number" name="order_number" required><br><br>
+            <!-- Checkbox -->
+            <div class="checkbox-container">
+                <input type="checkbox" id="agree_terms">
+                <label for="agree_terms">Ik heb de actievoorwaarden gelezen en ben hiermee akkoord</label>
+            </div>
 
-        <!-- Order Place -->
-        <label for="order_place">Order Place:</label><br>
-        <select id="order_place" name="order_place" required>
-            <option value="">Select</option>
-            <option value="SHABU To Go Alkmaar">SHABU To Go Alkmaar</option>
-            <option value="SHABU To Go Almere">SHABU To Go Almere</option>
-            <option value="SHABU To Go Alphen">SHABU To Go Alphen</option>
-            <option value="SHABU To Go Amersfoort">SHABU To Go Amersfoort</option>
-            <option value="SHABU To Go Amsterdam Noord">SHABU To Go Amsterdam Noord</option>
-            <option value="SHABU To Go Apeldoorn">SHABU To Go Apeldoorn</option>
-            <option value="SHABU To Go Breda">SHABU To Go Breda</option>
-            <option value="SHABU To Go Delft">SHABU To Go Delft</option>
-            <option value="SHABU To Go Den Haag Fahrenheitstraat">SHABU To Go Den Haag Fahrenheitstraat</option>
-            <option value="SHABU To Go Den Haag Ypenburg">SHABU To Go Den Haag Ypenburg</option>
-            <option value="SHABU To Go Deventer">SHABU To Go Deventer</option>
-            <option value="SHABU To Go Ede">SHABU To Go Ede</option>
-            <option value="SHABU To Go Eindhoven Zuid">SHABU To Go Eindhoven Zuid</option>
-            <option value="SHABU To Go Gouda">SHABU To Go Gouda</option>
-            <option value="SHABU To Go Haarlem">SHABU To Go Haarlem</option>
-            <option value="SHABU To Go Leiden">SHABU To Go Leiden</option>
-            <option value="SHABU To Go Nieuwegein">SHABU To Go Nieuwegein</option>
-            <option value="SHABU To Go Nijmegen">SHABU To Go Nijmegen</option>
-            <option value="SHABU To Go Rijswijk">SHABU To Go Rijswijk</option>
-            <option value="SHABU To Go Rotterdam Alexandrium">SHABU To Go Rotterdam Alexandrium</option>
-            <option value="SHABU To Go Rotterdam Coolsingel">SHABU To Go Rotterdam Coolsingel</option>
-            <option value="SHABU To Go Rotterdam Zuid">SHABU To Go Rotterdam Zuid</option>
-            <option value="SHABU To Go Spijkenisse">SHABU To Go Spijkenisse</option>
-            <option value="SHABU To Go Utrecht">SHABU To Go Utrecht</option>
-            <option value="SHABU To Go Utrecht Leidsche Rijn">SHABU To Go Utrecht Leidsche Rijn</option>
-            <option value="SHABU To Go Vlaardingen">SHABU To Go Vlaardingen</option>
-            <option value="SHABU To Go Zeist">SHABU To Go Zeist</option>
-            <option value="SHABU To Go Zoetermeer">SHABU To Go Zoetermeer</option>
-            <option value="SHABU To Go Zwijndrecht">SHABU To Go Zwijndrecht</option>
-        </select><br><br>
+            <!-- Submit Button -->
+            <button type="submit" id="submit_button" disabled>Verstuur</button>
+        </form>
+    </div>
 
-        <!-- Phone Number -->
-        <label for="phone_number">Phone Number: (optional)</label><br>
-        <input type="tel" id="phone_number" name="phone_number" pattern="^\+?[0-9]*$" title="Please enter a valid phone number. Only numbers and symbols are allowed."><br><br>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('marketing_form');
+            const submitButton = document.getElementById('submit_button');
+            const agreeTerms = document.getElementById('agree_terms');
+            const dateOfOrder = document.getElementById('date_of_order');
 
-        <!-- Instagram Profile -->
-        <label for="instagram_profile">Instagram Profile: (optional)</label><br>
-        <input type="text" id="instagram_profile" name="instagram_profile"><br><br>
+            // Get the current date
+            const today = new Date();
+            const currentYear = today.getFullYear();
 
-        <!-- Submit Button -->
-        <button type="submit">Submit</button>
-    </form>
+            // Set min and max dates
+            const minDate = `${currentYear}-01-01`;
+            const maxDate = today.toISOString().split('T')[0];
 
-<script>
-    // Attach a listener to the form submit event
-    document.getElementById("marketing_form").addEventListener("submit", function(event) {
-        // Prevent the default form submission
-        event.preventDefault();
-        
-        // Submit the form via AJAX
-        var form = event.target;
-        var formData = new FormData(form);
+            // Set the min and max attributes of the date input
+            dateOfOrder.min = minDate;
+            dateOfOrder.max = maxDate;
 
-        fetch(form.action, {
-            method: form.method,
-            body: formData
-        }).then(response => {
-            if (response.ok) {
-                // Redirect to homepage after successful submission
-                window.location.href = "https://www.shabutogo.nl/succes01";
-            } else {
-                alert('Form submission failed. Please try again.');
-            }
-        }).catch(error => {
-            console.error('Error:', error);
-            alert('Form submission failed. Please try again.');
+            form.addEventListener('input', () => {
+                let allValid = true;
+
+                // Check all required fields
+                form.querySelectorAll('input[required], select[required]').forEach(input => {
+                    if (!input.checkValidity()) {
+                        allValid = false;
+                        input.style.borderColor = '#ccc';
+                    } else {
+                        input.style.borderColor = '#ccc';
+                    }
+                });
+
+                // Check the checkbox
+                if (!agreeTerms.checked) {
+                    allValid = false;
+                }
+
+                // Enable or disable the submit button
+                if (allValid) {
+                    submitButton.disabled = false;
+                    submitButton.classList.add('enabled');
+                } else {
+                    submitButton.disabled = true;
+                    submitButton.classList.remove('enabled');
+                }
+            });
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: form.method,
+                    body: formData
+                }).then(response => {
+                    if (response.ok) {
+                        window.location.href = "https://www.shabutogo.nl/succes01";
+                    } else {
+                        alert('Form submission failed. Please try again.');
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert('Form submission failed. Please try again.');
+                });
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
