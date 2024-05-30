@@ -1,123 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketing Campaign Form</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Align items at the start */
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-        .form-container {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 500px; /* Increase the width to accommodate side-by-side layout */
-            text-align: left;
-            margin-top: 20px; /* Add some margin to the top */
-        }
-        .form-container h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .form-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-        .form-group label {
-            flex: 1; /* Allow label to take available space */
-            margin-right: 10px;
-        }
-        .form-group input,
-        .form-group select {
-            flex: 2; /* Allow input/select to take available space */
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .form-container form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #ccc;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: not-allowed;
-        }
-        .form-container form button.enabled {
-            background-color: #4CAF50;
-            cursor: pointer;
-        }
-        .form-container form button.enabled:hover {
-            background-color: #45a049;
-        }
-        input[type="date"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-family: inherit; /* Inherit font from parent */
-        }
-
-        /* Custom CSS for the first fieldset */
-        #personal_info_fieldset {
-            border: none; /* Remove the border */
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        /* Custom CSS for the second fieldset */
-        #order_info_fieldset {
-            border: none; /* Remove the border */
-            padding: 10px;
-            border-radius: 8px;
-        }
-        /* Align the legend text to the left */
-        legend {
-            text-align: center;
-            font-weight: bold; /* Optional: You can adjust the font weight as needed */
-        }
-        /* Lighter border for normal state */
-        input, select {
-            border: 1px solid #ff0000; /* Lighter color */
-            transition: border-color 0.3s; /* Smooth transition */
-        }
-        /* Darker border for hover state */
-        input:hover, select:hover {
-            box-shadow: 0 0 3px rgba(65, 62, 255, 0.5); /* Blue glow effect */
-        }
-        /* Glow effect for focus state */
-        input:focus, select:focus {
-            box-shadow: 0 0 10px rgba(20, 23, 243, 0.5); /* Blue glow effect */
-        }
-        /* Position the checkbox and text */
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            margin-bottom: 16px;
-        }
-        .checkbox-container label {
-            margin-left: 8px; /* Adjust spacing between checkbox and text */
-        }
-        /* Divider between fieldsets */
-        .fieldset-divider {
-            border-top: 1px solid #ccc;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Marketing Campaign Form</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                height: 100vh;
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
+            }
+            .form-container {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 500px; /* Maximum width for larger screens */
+                text-align: left;
+                margin-top: 20px;
+            }
+            .form-container h2 {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            .form-group {
+                display: flex;
+                flex-direction: column; /* Stack label and input vertically */
+                align-items: flex-start;
+                margin-bottom: 16px;
+            }
+            .form-group label {
+                margin-bottom: 5px; /* Space between label and input */
+            }
+            .form-group input,
+            .form-group select {
+                width: 100%; /* Full width for inputs and selects */
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            .form-container form button {
+                width: 100%;
+                padding: 10px;
+                background-color: #ccc;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: not-allowed;
+            }
+            .form-container form button.enabled {
+                background-color: #4CAF50;
+                cursor: pointer;
+            }
+            .form-container form button.enabled:hover {
+                background-color: #45a049;
+            }
+            input[type="date"] {
+                font-family: inherit;
+            }
+            #personal_info_fieldset, #order_info_fieldset {
+                border: none;
+                padding: 10px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+            }
+            legend {
+                text-align: center;
+                font-weight: bold;
+            }
+            input, select {
+                border: 1px solid #ccc;
+                transition: border-color 0.3s;
+            }
+            input:hover, select:hover {
+                box-shadow: 0 0 3px rgba(65, 62, 255, 0.5);
+            }
+            input:focus, select:focus {
+                box-shadow: 0 0 10px rgba(20, 23, 243, 0.5);
+            }
+            .checkbox-container {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                margin-bottom: 16px;
+            }
+            .checkbox-container label {
+                margin-left: 8px;
+            }
+            .fieldset-divider {
+                border-top: 1px solid #ccc;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            
+            /* Media query for screens larger than 600px */
+            @media (min-width: 600px) {
+                .form-group {
+                    flex-direction: row; /* Side by side on larger screens */
+                    align-items: center;
+                }
+                .form-group label {
+                    flex: 1; /* Take available space */
+                    margin-right: 10px; /* Space between label and input */
+                    margin-bottom: 0; /* Remove bottom margin */
+                }
+                .form-group input,
+                .form-group select {
+                    flex: 2; /* Take available space */
+                }
+            }
+        </style>
+    </head>
 <body>
     <div class="form-container">
         <h2>SHABU To Go 10 jaar Winactie</h2>
