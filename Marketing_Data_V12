@@ -23,6 +23,7 @@
                 max-width: 500px;
                 text-align: left;
                 margin-top: 20px;
+                margin-bottom: 30px;
             }
             .form-container h2 {
                 margin-bottom: 20px;
@@ -99,7 +100,25 @@
                 margin-top: 20px;
                 margin-bottom: 20px;
             }
-            
+
+            /* Loading bar styles */
+            .loading-bar-container {
+                display: none;
+                width: 100%;
+                background-color: #f3f3f3;
+                border-radius: 8px;
+                overflow: hidden;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            .loading-bar {
+                width: 0;
+                height: 10px;
+                background-color: #e981cf;
+                border-radius: 8px;
+                transition: width 0.6s ease;
+            }       
+
             @media (min-width: 600px) {
                 .form-group {
                     flex-direction: row;
@@ -209,10 +228,13 @@
             <!-- Checkbox -->
             <div class="checkbox-container">
                 <input type="checkbox" id="agree_terms">
-                <label for="agree_terms">Ik heb de actievoorwaarden gelezen en ben hiermee akkoord</label>
+                <label for="privacy_policy">Ik ga akkoord met de <a href="#" target="_blank">actievoorwaarden</a></label>
             </div>
 
-            <!-- Submit Button -->
+            <!-- Submit Button & Loading bar -->
+            <div class="loading-bar-container" id="loadingBarContainer">
+                <div class="loading-bar" id="loadingBar"></div>
+            </div>
             <button type="submit" id="submit_button" disabled>Verstuur</button>
         </form>
     </div>
@@ -282,8 +304,72 @@
                     console.error('Error:', error);
                     alert('Form submission failed. Please try again.');
                 });
+
+                loadingBarContainer.style.display = 'block';
+                let progress = 0;
+
+                // Simulate the progress
+                const interval = setInterval(function() {
+                    progress += 10;
+                    loadingBar.style.width = progress + '%';
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        form.submit(); // Submit the form after progress completes
+                    }
+                }, 200); // Adjust this duration for faster/slower progress bar
             });
         });
+        document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('marketing_form');
+        const privacyPolicyCheckbox = document.getElementById('privacy_policy');
+        const submitButton = form.querySelector('button[type="submit"]');
+        const loadingBarContainer = document.getElementById('loadingBarContainer');
+        const loadingBar = document.getElementById('loadingBar');
+
+        privacyPolicyCheckbox.addEventListener('change', function() {
+            if (privacyPolicyCheckbox.checked) {
+                submitButton.removeAttribute('disabled');
+                submitButton.classList.add('enabled');
+            } else {
+                submitButton.setAttribute('disabled', 'disabled');
+                submitButton.classList.remove('enabled');
+            }
+        });
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const formData = new FormData(form);
+
+            // Display the loading bar
+            loadingBarContainer.style.display = 'block';
+            let progress = 0;
+
+            // Simulate the progress
+            const interval = setInterval(function() {
+                progress += 10;
+                loadingBar.style.width = progress + '%';
+                if (progress >= 100) {
+                    clearInterval(interval);
+
+                    // Once loading completes, submit the form using fetch
+                    fetch(form.action, {
+                        method: form.method,
+                        body: formData
+                    }).then(response => {
+                        if (response.ok) {
+                            window.location.href = "https://www.shabutogo.nl/succes01";
+                        } else {
+                            alert('Form submission failed. Please try again.');
+                        }
+                    }).catch(error => {
+                        console.error('Error:', error);
+                        alert('Form submission failed. Please try again.');
+                    });
+                }
+            }, 200); // Adjust this duration for faster/slower progress bar
+        });
+    });
     </script>
 </body>
 </html>
