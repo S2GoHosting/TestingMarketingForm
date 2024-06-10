@@ -46,6 +46,8 @@
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 box-sizing: border-box;
+                font-family: inherit;
+                font-size: inherit;
             }
             .form-container form button {
                 width: 100%;
@@ -57,11 +59,11 @@
                 cursor: not-allowed;
             }
             .form-container form button.enabled {
-                background-color: #4CAF50;
+                background-color: #e981cf;
                 cursor: pointer;
             }
             .form-container form button.enabled:hover {
-                background-color: #45a049;
+                background-color: #f07cd3;
             }
             input[type="date"] {
                 font-family: inherit;
@@ -117,7 +119,12 @@
                 background-color: #e981cf;
                 border-radius: 8px;
                 transition: width 0.6s ease;
-            }       
+            }   
+
+            #user_opinion {
+            resize: none; /* Disable resizing for this textarea */
+            font-family: inherit; /* Match font with the rest */
+            }
 
             @media (min-width: 600px) {
                 .form-group {
@@ -135,6 +142,28 @@
                     flex: 2;
                 }
             }
+
+
+            /* Adjustments specifically for textarea's form group */
+            #user_opinion.form-group {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            #user_opinion.form-group label {
+                flex: 1;
+                margin-right: 10px;
+                margin-bottom: 0;
+            }
+
+            #user_opinion.form-group textarea {
+                flex: 2;
+            }
+
+            /* Specific rule for the opinion textarea group */
+            .form-group.textarea-group {
+            align-items: flex-start;
+            }
         </style>
     </head>
 <body>
@@ -143,7 +172,7 @@
         <div class="fieldset-divider"></div>
         <form id="marketing_form" action="https://script.google.com/macros/s/AKfycbxwiqYTRvVdeasQMOBXCJguifRIw3-hur9AbYfMqj9DjNGb4iQWGXffvbGbbVKqsKdQ/exec" method="post">
             <fieldset id="order_info_fieldset">
-                <legend id="order_info_fieldset_legend">Bestelling gegevens</legend>
+                <legend id="order_info_fieldset_legend">Bestelgegevens</legend>
                 <br>
                 <div class="form-group">
                     <label for="date_of_order"><b>Dag van bestelling:</b></label>
@@ -193,7 +222,7 @@
             <div class="fieldset-divider"></div>
 
             <fieldset id="personal_info_fieldset">
-                <legend id="personal_info_fieldset_legend">Persoonsgegevens</legend>
+                <legend id="personal_info_fieldset_legend">Contactgegevens</legend>
                 <br>
                 <div class="form-group">
                     <label for="email"><b>Email:</b></label>
@@ -314,62 +343,10 @@
                     loadingBar.style.width = progress + '%';
                     if (progress >= 100) {
                         clearInterval(interval);
-                        form.submit(); // Submit the form after progress completes
                     }
-                }, 200); // Adjust this duration for faster/slower progress bar
+                }, 250); // Adjust this duration for faster/slower progress bar
             });
         });
-        document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('marketing_form');
-        const privacyPolicyCheckbox = document.getElementById('privacy_policy');
-        const submitButton = form.querySelector('button[type="submit"]');
-        const loadingBarContainer = document.getElementById('loadingBarContainer');
-        const loadingBar = document.getElementById('loadingBar');
-
-        privacyPolicyCheckbox.addEventListener('change', function() {
-            if (privacyPolicyCheckbox.checked) {
-                submitButton.removeAttribute('disabled');
-                submitButton.classList.add('enabled');
-            } else {
-                submitButton.setAttribute('disabled', 'disabled');
-                submitButton.classList.remove('enabled');
-            }
-        });
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const formData = new FormData(form);
-
-            // Display the loading bar
-            loadingBarContainer.style.display = 'block';
-            let progress = 0;
-
-            // Simulate the progress
-            const interval = setInterval(function() {
-                progress += 10;
-                loadingBar.style.width = progress + '%';
-                if (progress >= 100) {
-                    clearInterval(interval);
-
-                    // Once loading completes, submit the form using fetch
-                    fetch(form.action, {
-                        method: form.method,
-                        body: formData
-                    }).then(response => {
-                        if (response.ok) {
-                            window.location.href = "https://www.shabutogo.nl/succes01";
-                        } else {
-                            alert('Form submission failed. Please try again.');
-                        }
-                    }).catch(error => {
-                        console.error('Error:', error);
-                        alert('Form submission failed. Please try again.');
-                    });
-                }
-            }, 200); // Adjust this duration for faster/slower progress bar
-        });
-    });
     </script>
 </body>
 </html>
